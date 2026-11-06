@@ -1,1 +1,125 @@
-index.html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.P. Homoeo Book Mart - হোমিওপ্যাথি বইয়ের বিশ্বস্ত ঠিকানা</title>
+<meta name="description" content="A.P. Homoeo Book Mart - হোমিওপ্যাথি বই, মেটেরিয়া মেডিকা, অর্গানন, রেপার্টরি সুলভ মূল্যে।">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',Arial,sans-serif}
+body{background:#fdf8f0;color:#222}
+a{text-decoration:none}
+.topbar{background:#0f5132;color:#fff;text-align:center;padding:8px 10px;font-size:14px}
+header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:48px;height:48px;background:#0f5132;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900}
+.logo b{font-size:22px;color:#0f5132;line-height:1}
+.logo span{font-size:13px;color:#666}
+.nav-links{display:flex;gap:18px;font-weight:600}
+.nav-links a{color:#222}
+.btn{background:#e67e22;color:#fff;padding:10px 18px;border-radius:30px;font-weight:700;display:inline-block;border:0;cursor:pointer}
+.btn-green{background:#0f5132}
+.hero{max-width:1100px;margin:18px auto;padding:28px 16px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.hero h1{font-size:42px;line-height:1.15;color:#0f5132}
+.hero h1 span{color:#e67e22}
+.hero p{margin:14px 0;color:#555;font-size:17px;line-height:1.6}
+.hero-card{background:#0f5132;color:#fff;border-radius:20px;padding:22px}
+.hero-card h3{font-size:22px;margin-bottom:10px}
+.hero-card ul{list-style:none;line-height:2}
+.searchbox{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;gap:10px}
+.searchbox input{flex:1;padding:13px 16px;border:2px solid #ddd;border-radius:30px;font-size:16px;outline:none}
+.searchbox input:focus{border-color:#0f5132}
+.section{max-width:1100px;margin:28px auto;padding:0 16px}
+.section h2{font-size:28px;color:#0f5132;margin-bottom:6px}
+.section p.sub{color:#666;margin-bottom:16px}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.cat{padding:8px 16px;border-radius:30px;background:#fff;border:1px solid #ddd;cursor:pointer;font-weight:600}
+.cat.active{background:#0f5132;color:#fff;border-color:#0f5132}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.07);display:flex;flex-direction:column}
+.cover{height:170px;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,#e8f5e9,#fff3e0);padding:14px;text-align:center}
+.card-body{padding:14px;flex:1;display:flex;flex-direction:column}
+.card-body h3{font-size:17px;line-height:1.4;min-height:48px}
+.author{color:#777;font-size:13px;margin:6px 0}
+.price{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
+.price b{font-size:19px;color:#0f5132}
+.price s{color:#999;font-size:13px}
+.add{margin-top:10px;width:100%;padding:10px;border:0;border-radius:10px;background:#0f5132;color:#fff;font-weight:700;cursor:pointer}
+.add:hover{background:#e67e22}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.feat{background:#fff;padding:18px;border-radius:16px;text-align:center}
+.feat div{font-size:32px}
+.feat b{display:block;margin:8px 0 4px}
+.feat span{font-size:13px;color:#666}
+.about{background:#fff;border-radius:20px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px;line-height:1.7}
+.about h3{color:#0f5132;margin-bottom:8px}
+footer{background:#0f5132;color:#fff;margin-top:30px;padding:26px 16px;text-align:center}
+footer a{color:#ffdf9e;font-weight:700}
+.cart-float{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;padding:13px 18px;border-radius:50px;font-weight:800;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:99;border:0;cursor:pointer}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hero h1{font-size:32px}.grid{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">🚚 সারা ভারতে হোম ডেলিভারি • 📞 অর্ডার করতে WhatsApp করুন • ১০০% অরিজিনাল বই</div>
+<header><div class="nav">
+<div class="logo"><div class="logo-icon">A.P.</div><div><b>A.P. Homoeo Book Mart</b><br><span>হোমিওপ্যাথি বইয়ের বিশ্বস্ত ঠিকানা</span></div></div>
+<div class="nav-links"><a href="#books">বই</a><a href="#about">আমাদের সম্পর্কে</a><a href="#contact">যোগাযোগ</a></div>
+<a class="btn btn-green" href="https://wa.me/919000000000?text=নমস্কার, বই অর্ডার করতে চাই" target="_blank">WhatsApp অর্ডার</a>
+</div></header>
+
+<section class="hero">
+<div>
+<h1>হোমিওপ্যাথি বই<br><span>এখন হাতের মুঠোয়</span></h1>
+<p>ডাক্তার, ছাত্র ও হোমিওপ্যাথি প্রেমীদের জন্য অর্গানন, মেটেরিয়া মেডিকা, রেপার্টরি, প্র্যাকটিস অফ মেডিসিন সহ সব বই — সুলভ মূল্যে, দ্রুত ডেলিভারিতে।</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#books">📚 বই দেখুন</a><a class="btn btn-green" href="https://wa.me/919000000000" target="_blank">💬 WhatsApp করুন</a></div>
+<p style="font-size:14px">⭐ ৪.৯ রেটিং • ১০০০+ খুশি ক্রেতা • ক্যাশ অন ডেলিভারি</p>
+</div>
+<div class="hero-card"><h3>🔥 আজকের অফার</h3><ul><li>✅ ৫০০ টাকার উপরে অর্ডারে ডেলিভারি ফ্রি</li><li>✅ যেকোনো ৩টি বইয়ে ১০% ছাড়</li><li>✅ BHMS / DHMS ছাত্রদের জন্য স্পেশাল ছাড়</li><li>✅ পুরনো বই বদলে নতুন বই নিন</li></ul><br><a class="btn" href="#books" style="background:#fff;color:#0f5132">অফারে বই কিনুন →</a></div>
+</section>
+
+<div class="searchbox"><input id="search" oninput="filterBooks()" placeholder="🔍 বইয়ের নাম বা লেখক দিয়ে খুঁজুন... যেমন: Organon, Kent, Boericke"><button class="btn btn-green" onclick="filterBooks()">খুঁজুন</button></div>
+
+<section class="section" id="books">
+<h2>📚 জনপ্রিয় বই</h2><p class="sub">নিচের যেকোনো বই WhatsApp-এ অর্ডার করতে পারবেন।</p>
+<div class="cats"><button class="cat active" onclick="setCat('all',this)">সব বই</button><button class="cat" onclick="setCat('organon',this)">অর্গানন</button><button class="cat" onclick="setCat('materia',this)">মেটেরিয়া মেডিকা</button><button class="cat" onclick="setCat('repertory',this)">রেপার্টরি</button><button class="cat" onclick="setCat('practice',this)">প্র্যাকটিস</button></div>
+<div class="grid" id="bookGrid"></div>
+</section>
+
+<section class="section"><div class="features">
+<div class="feat"><div>📦</div><b>দ্রুত ডেলিভারি</b><span>২-৫ দিনের মধ্যে সারা ভারতে</span></div>
+<div class="feat"><div>✅</div><b>অরিজিনাল বই</b><span>নকল বইয়ের কোনো ঝামেলা নেই</span></div>
+<div class="feat"><div>💰</div><b>সুলভ মূল্য</b><span>বাজারের থেকে কম দামে</span></div>
+<div class="feat"><div>💬</div><b>সহজ অর্ডার</b><span>শুধু WhatsApp করলেই হবে</span></div>
+</div></section>
+
+<section class="section" id="about"><div class="about">
+<div><h3>আমাদের সম্পর্কে</h3><p>A.P. Homoeo Book Mart হোমিওপ্যাথি বইয়ের একটি বিশ্বস্ত দোকান। আমরা চাই, গ্রামের ছাত্র থেকে শুরু করে শহরের ডাক্তার — সবাই যেন সঠিক বই সঠিক দামে পায়। BHMS, DHMS, MD (Hom) সহ সকল কোর্সের বই আমাদের কাছে পাবেন।</p><br><p>বই না পেলে WhatsApp-এ নাম লিখে পাঠান, আমরা খুঁজে এনে দেবো।</p></div>
+<div><h3>কীভাবে অর্ডার করবেন?</h3><p><b>১.</b> পছন্দের বইয়ে “অর্ডার করুন” চাপুন<br><b>২.</b> WhatsApp খুলে যাবে, মেসেজ পাঠান<br><b>৩.</b> আমরা ঠিকানা নিয়ে কুরিয়ার করে দেবো<br><b>৪.</b> ক্যাশ অন ডেলিভারি / UPI — দুটোই চলবে</p></div>
+</div></section>
+
+<footer id="contact"><h2 style="color:#fff">A.P. Homoeo Book Mart</h2><p style="margin:10px 0">হোমিওপ্যাথি বই, নোটস ও গাইড — সব এক জায়গায়</p><p>📞 WhatsApp: <a href="https://wa.me/919000000000">এখানে ক্লিক করুন</a> &nbsp; | &nbsp; 📍 Murshidabad, West Bengal</p><p style="margin-top:12px;font-size:13px;opacity:.8">© 2026 A.P. Homoeo Book Mart. সর্বস্বত্ব সংরক্ষিত।</p></footer>
+<button class="cart-float" onclick="window.open('https://wa.me/919000000000?text=নমস্কার, বই অর্ডার করতে চাই','_blank')">💬 অর্ডার করুন</button>
+
+<script>
+const books=[
+{title:"Organon of Medicine - 6th Edition",author:"Dr. Samuel Hahnemann",price:299,old:399,cat:"organon",emoji:"📖"},
+{title:"Boericke's Materia Medica",author:"Dr. William Boericke",price:499,old:650,cat:"materia",emoji:"📕"},
+{title:"Kent's Repertory",author:"Dr. J.T. Kent",price:699,old:899,cat:"repertory",emoji:"📗"},
+{title:"Keynotes - Allen",author:"Dr. H.C. Allen",price:349,old:450,cat:"materia",emoji:"📘"},
+{title:"Practice of Medicine",author:"Dr. Boericke / Dewey",price:599,old:750,cat:"practice",emoji:"🩺"},
+{title:"Materia Medica Pura",author:"Dr. Hahnemann",price:799,old:999,cat:"materia",emoji:"📙"},
+{title:"Aphorism - Organon Explained",author:"Bengali Guide",price:199,old:280,cat:"organon",emoji:"📝"},
+{title:"Complete Repertory - Murphy",author:"Dr. Robin Murphy",price:1299,old:1599,cat:"repertory",emoji:"📚"},
+];
+let currentCat='all';
+function render(list){
+ document.getElementById('bookGrid').innerHTML=list.map(b=>`<div class="card"><div class="cover">${b.emoji}</div><div class="card-body"><h3>${b.title}</h3><div class="author">লেখক: ${b.author}</div><div class="price"><div><b>₹${b.price}</b> <s>₹${b.old}</s></div><span style="color:green;font-size:13px;font-weight:700">In Stock</span></div><button class="add" onclick="order('${b.title}')">🛒 অর্ডার করুন</button></div></div>`).join('');
+}
+function order(name){ window.open('https://wa.me/919000000000?text='+encodeURIComponent('নমস্কার, আমি এই বইটি অর্ডার করতে চাই: '+name),'_blank'); }
+function setCat(c,el){ currentCat=c; document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active')); el.classList.add('active'); filterBooks(); }
+function filterBooks(){ const q=document.getElementById('search').value.toLowerCase(); const f=books.filter(b=>(currentCat==='all'||b.cat===currentCat)&&(b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q))); render(f); }
+render(books);
+</script>
+</body>
+</html>
