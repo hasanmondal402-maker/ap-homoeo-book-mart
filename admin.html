@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin - A.P. Homoeo Book Mart</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#f2f2f2;padding:14px}.box{max-width:560px;margin:auto;background:#fff;border-radius:14px;padding:16px}h2{color:#0f5132}label{display:block;font-weight:700;font-size:13px;margin:10px 0 4px}input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;font-size:15px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{width:100%;padding:12px;border:0;border-radius:10px;background:#0f5132;color:#fff;font-weight:800;margin-top:12px;cursor:pointer}.btn2{background:#e67e22}.preview{margin-top:10px;border:1px solid #eee;border-radius:12px;padding:10px;display:none}.preview img{width:100%;max-height:220px;object-fit:cover;border-radius:10px}.item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee;align-items:center}.item img{width:56px;height:56px;object-fit:cover;border-radius:8px}.small{font-size:12px;color:#666}.del{color:#c00;background:none;border:0;font-weight:800;cursor:pointer}#lock{text-align:center;padding:40px 16px}.note{background:#fff3e0;padding:10px;border-radius:10px;font-size:13px;line-height:1.6;margin:10px 0}</style></head>
+<body>
+<div id="lock" class="box"><h2>🔐 Admin Login</h2><p style="margin:10px;color:#666">শুধু আপনি ঢুকতে পারবেন</p><label style="text-align:left">পাসওয়ার্ড</label><input id="pw" type="password" placeholder="পাসওয়ার্ড দিন"><button class="btn" onclick="login()">ঢুকুন</button><p style="font-size:12px;color:#999;margin-top:10px">প্রথমবার পাসওয়ার্ড: <b>ap1234</b> — পরে বদলে নেবেন</p></div>
+<div id="main" class="box" style="display:none">
+<h2>📚 নতুন বই যোগ করুন</h2>
+<div class="note">১. বইয়ের তথ্য দিন → ২. ছবি তুলুন → ৩. <b>বই যোগ করুন</b> → ৪. নিচে <b>Publish / সবার জন্য চালু করুন</b> চাপুন। তাহলেই সব কাস্টমার দেখতে পাবে।</div>
+<label>বইয়ের ছবি * (ক্যামেরা দিয়ে তুলুন বা গ্যালারি থেকে নিন)</label><input type="file" id="photo" accept="image/*" onchange="previewPhoto(this)">
+<img id="imgPrev" style="display:none;width:100%;max-height:220px;object-fit:cover;border-radius:10px;margin-top:8px">
+<label>বইয়ের নাম *</label><input id="title" placeholder="যেমন: Organon of Medicine">
+<label>লেখক</label><input id="author" placeholder="যেমন: Dr. Hahnemann">
+<label>ক্যাটাগরি</label><select id="cat"><option>অর্গানন</option><option>মেটেরিয়া মেডিকা</option><option>রেপার্টরি</option><option>প্র্যাকটিস</option><option>BHMS</option><option>DHMS</option><option>অন্যান্য</option></select>
+<div class="row"><div><label>আসল দাম (MRP) ₹</label><input id="old" type="number" placeholder="399" oninput="calc()"></div><div><label>আপনার বিক্রির দাম ₹ *</label><input id="price" type="number" placeholder="299" oninput="calc()"></div></div>
+<p id="disc" style="color:green;font-weight:700;margin-top:6px"></p>
+<label>স্টকে কত পিস আছে? *</label><input id="stock" type="number" placeholder="যেমন: 10">
+<button class="btn" onclick="addBook()">✅ বই যোগ করুন</button>
+<div class="preview" id="prevBox"></div>
+<h3 style="margin-top:18px">আপনার বইয়ের লিস্ট (<span id="count">0</span> টি)</h3>
+<div id="list"></div>
+<button class="btn btn2" onclick="publish()">🚀 Publish - সবার জন্য চালু করুন</button>
+<button class="btn" style="background:#666" onclick="location.href='index.html'">🏠 সাইট দেখুন</button>
+<p style="font-size:12px;color:#888;margin-top:10px">Publish চাপলে <b>books.json</b> ফাইল ডাউনলোড হবে। ওটা GitHub-এ আপলোড করলেই সবাই নতুন বই দেখতে পাবে।</p>
+</div>
+<script>
+let photoData=""; function login(){ if(document.getElementById('pw').value==='ap1234'){ document.getElementById('lock').style.display='none'; document.getElementById('main').style.display='block'; render(); } else alert('ভুল পাসওয়ার্ড'); }
+function calc(){ const o=+document.getElementById('old').value, p=+document.getElementById('price').value; if(o&&p&&o>p) document.getElementById('disc').textContent='ডিসকাউন্ট: '+Math.round((o-p)/o*100)+'% ছাড় — কাস্টমার এটা দেখতে পাবে'; }
+function previewPhoto(inp){ const f=inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=e=>{ const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); const max=800; let w=img.width,h=img.height; if(w>max){ h=h*max/w; w=max; } c.width=w;c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); photoData=c.toDataURL('image/jpeg',0.7); const p=document.getElementById('imgPrev'); p.src=photoData; p.style.display='block'; }; img.src=e.target.result; }; r.readAsDataURL(f); }
+function getBooks(){ return JSON.parse(localStorage.getItem('ap_books')||'[]'); }
+function saveBooks(b){ localStorage.setItem('ap_books',JSON.stringify(b)); }
+function addBook(){ const t=document.getElementById('title').value.trim(), a=document.getElementById('author').value.trim(), c=document.getElementById('cat').value, old=+document.getElementById('old').value||0, price=+document.getElementById('price').value||0, stock=+document.getElementById('stock').value||0; if(!t||!price) return alert('বইয়ের নাম আর দাম দিতেই হবে'); if(!photoData) if(!confirm('ছবি ছাড়াই যোগ করবেন?')) return; const b=getBooks(); b.unshift({title:t,author:a,cat:c,old:old,price:price,stock:stock,img:photoData||'',time:Date.now()}); saveBooks(b); alert('বই যোগ হয়ে গেছে ✅'); ['title','author','old','price','stock'].forEach(id=>document.getElementById(id).value=''); photoData=''; document.getElementById('imgPrev').style.display='none'; render(); }
+function render(){ const b=getBooks(); document.getElementById('count').textContent=b.length; document.getElementById('list').innerHTML=b.map((x,i)=>`<div class="item">${x.img?`<img src="${x.img}">`:'📖'}<div style="flex:1"><b>${x.title}</b><div class="small">${x.author} | ${x.cat} | ₹${x.price} ${x.old?`<s>₹${x.old}</s>`:''} | স্টক: ${x.stock} পিস</div></div><button onclick="changeStock(${i},1)">+</button><button onclick="changeStock(${i},-1)">-</button><button class="del" onclick="delBook(${i})">✕</button></div>`).join('')||'<p style="color:#888">এখনো কোনো বই যোগ করেননি</p>'; }
+function changeStock(i,d){ const b=getBooks(); b[i].stock=Math.max(0,b[i].stock+d); saveBooks(b); render(); }
+function delBook(i){ if(!confirm('এই বইটা ডিলিট করবেন?')) return; const b=getBooks(); b.splice(i,1); saveBooks(b); render(); }
+function publish(){ const b=getBooks(); if(!b.length) return alert('প্রথমে একটা বই যোগ করুন'); const blob=new Blob([JSON.stringify(b,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='books.json'; a.click(); alert('books.json ডাউনলোড হয়ে গেছে। এবার GitHub-এ Upload file করে এই ফাইলটা আপলোড করুন।'); }
+</script></body></html>

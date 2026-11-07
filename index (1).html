@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.P. Homoeo Book Mart - 500+ হোমিওপ্যাথি বই</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#fdf8f0;color:#222}
+a{text-decoration:none}.topbar{background:#0f5132;color:#fff;text-align:center;padding:8px;font-size:13px}
+header{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;gap:10px}
+.logo b{font-size:21px;color:#0f5132}.logo span{font-size:12px;color:#666}
+.btn{background:#e67e22;color:#fff;padding:11px 18px;border-radius:30px;font-weight:700;border:0;cursor:pointer}
+.btn-green{background:#0f5132}.btn-ghost{background:#fff;color:#0f5132;border:1px solid #0f5132}
+.hero{max-width:1100px;margin:16px auto;padding:10px 16px}.hero h1{font-size:34px;color:#0f5132;line-height:1.2}.hero h1 span{color:#e67e22}.hero p{color:#555;margin:10px 0;line-height:1.6}
+.searchbox{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;gap:8px}.searchbox input{flex:1;padding:12px;border:2px solid #ddd;border-radius:30px;outline:none;font-size:15px}
+.section{max-width:1100px;margin:20px auto;padding:0 16px}.section h2{color:#0f5132}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.cat{padding:8px 14px;border-radius:30px;background:#fff;border:1px solid #ddd;cursor:pointer;font-weight:600}.cat.active{background:#0f5132;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(min-width:800px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.07);display:flex;flex-direction:column}
+.cover{height:130px;display:flex;align-items:center;justify-content:center;font-size:46px;background:linear-gradient(135deg,#e8f5e9,#fff3e0)}
+.card-body{padding:12px;flex:1;display:flex;flex-direction:column}.card-body h3{font-size:15px;line-height:1.4;min-height:42px}
+.author{color:#777;font-size:12px;margin:5px 0}.stock{font-size:12px;font-weight:700;margin:4px 0}.stock.ok{color:#0f5132}.stock.low{color:#e67e22}.stock.out{color:#c00}
+.price b{font-size:18px;color:#0f5132}.price s{color:#999;font-size:12px}
+.qty{display:flex;align-items:center;gap:8px;margin:8px 0}.qty button{width:32px;height:32px;border-radius:50%;border:1px solid #ddd;background:#fff;font-size:18px;cursor:pointer}
+.add{margin-top:auto;width:100%;padding:10px;border:0;border-radius:10px;background:#0f5132;color:#fff;font-weight:700;cursor:pointer}.add:disabled{background:#ccc}
+.cart-float{position:fixed;right:14px;bottom:14px;background:#25D366;color:#fff;padding:13px 18px;border-radius:50px;font-weight:800;z-index:99;border:0;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:100;overflow:auto}.modal.open{display:block}
+.modal-box{max-width:520px;background:#fff;margin:20px auto;border-radius:16px;padding:18px}
+.modal-box h3{margin-bottom:10px;color:#0f5132}.modal-box label{display:block;font-size:13px;font-weight:700;margin:10px 0 4px}.modal-box input,.modal-box textarea,.modal-box select{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;font-size:15px}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
+.paybox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.pay{border:2px solid #ddd;border-radius:12px;padding:12px;text-align:center;cursor:pointer;font-weight:700}.pay.sel{border-color:#0f5132;background:#e8f5e9}
+.info{background:#fff3e0;border-radius:12px;padding:12px;font-size:13px;line-height:1.6;margin-top:10px}
+footer{background:#0f5132;color:#fff;text-align:center;padding:22px 16px;margin-top:26px}
+</style></head>
+<body>
+<div class="topbar">🚚 সারা ভারতে হোম ডেলিভারি • 💵 COD + UPI • ১০০% অরিজিনাল বই</div>
+<header><div class="nav"><div class="logo"><b>A.P. Homoeo Book Mart</b><br><span>হোমিওপ্যাথি বইয়ের বিশ্বস্ত ঠিকানা</span></div><button class="btn btn-green" onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button></div></header>
+<section class="hero"><h1>৫০০+ হোমিওপ্যাথি বই<br><span>এখন এক জায়গায়</span></h1><p>নিচে সার্চ করুন, বই কার্টে যোগ করুন, ঠিকানা দিন — অর্ডার সরাসরি WhatsApp-এ চলে যাবে। <b id="totalBooks"></b></p></section>
+<div class="searchbox"><input id="search" oninput="filterBooks()" placeholder="🔍 বই / লেখক লিখে খুঁজুন... যেমন: Organon, Kent"><button class="btn btn-green" onclick="filterBooks()">খুঁজুন</button></div>
+<section class="section"><h2>📚 সব বই</h2><div class="cats" id="cats"></div><div class="grid" id="bookGrid"></div><div style="text-align:center;margin:16px"><button class="btn btn-ghost" id="loadMoreBtn" onclick="loadMore()">আরও বই দেখুন ↓</button><p id="showing" style="font-size:13px;color:#666;margin-top:8px"></p></div></section>
+<section class="section"><div style="background:#fff;border-radius:14px;padding:16px;line-height:1.7"><h3 style="color:#0f5132">কীভাবে অর্ডার করবেন?</h3><p><b>১.</b> বইয়ে <b>+</b> চেপে কার্টে নিন &nbsp; <b>২.</b> কার্টে গিয়ে নাম, মোবাইল, ঠিকানা দিন &nbsp; <b>৩.</b> <b>COD</b> নিলে বই পেয়ে টাকা দেবেন, <b>UPI</b> নিলে আগে পাঠিয়ে স্ক্রিনশট দেবেন &nbsp; <b>৪.</b> অর্ডার WhatsApp-এ চলে যাবে।</p><p style="font-size:13px;color:#666">বই খুঁজে না পেলে WhatsApp-এ নাম লিখে পাঠান, আমরা খুঁজে এনে দেবো।</p></div></section>
+<footer><h3>A.P. Homoeo Book Mart</h3><p style="margin:8px 0">WhatsApp: 90643 30094 &nbsp;|&nbsp; 📍 Murshidabad, West Bengal</p><p style="font-size:12px;opacity:.8">© 2026 A.P. Homoeo Book Mart</p></footer>
+<button class="cart-float" onclick="openCart()">🛒 কার্ট দেখুন (<span id="cartCount2">0</span>)</button>
+
+<div class="modal" id="cartModal"><div class="modal-box">
+<h3>🛒 আপনার কার্ট</h3><div id="cartItems"></div>
+<div style="display:flex;justify-content:space-between;font-weight:800;margin:10px 0"><span>বইয়ের দাম:</span><span id="subtotal">₹0</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>ডেলিভারি (৫০০+ হলে ফ্রি):</span><span id="delivery">₹0</span></div>
+<div style="display:flex;justify-content:space-between;font-weight:900;font-size:18px;margin:8px 0"><span>মোট:</span><span id="grand">₹0</span></div>
+<label>আপনার নাম *</label><input id="cName" placeholder="যেমন: রহিম শেখ">
+<label>মোবাইল নম্বর *</label><input id="cPhone" placeholder="10 সংখ্যার নম্বর">
+<label>পুরো ঠিকানা + পিন কোড *</label><textarea id="cAddr" rows="2" placeholder="গ্রাম, পোস্ট, থানা, জেলা, পিন কোড"></textarea>
+<label>পেমেন্টের উপায় বাছুন *</label><div class="paybox"><div class="pay" id="payCOD" onclick="setPay('COD')">💵 ক্যাশ অন ডেলিভারি<br><small>বই পেয়ে টাকা দেবেন</small></div><div class="pay" id="payUPI" onclick="setPay('UPI')">📱 UPI / PhonePe / GPay<br><small>আগে পাঠাতে হবে</small></div></div>
+<div class="info" id="payInfo">পেমেন্ট বাছুন, তাহলে নিচে নির্দেশ দেখতে পাবেন।</div>
+<div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-ghost" style="flex:1" onclick="closeCart()">বন্ধ করুন</button><button class="btn" style="flex:2" onclick="checkout()">✅ WhatsApp-এ অর্ডার পাঠান</button></div>
+</div></div>
+
+<script>
+const WA="919064330094";
+const UPI_ID="9064330094@upi"; // পরে আপনার আসল UPI ID বসাবেন
+const FREE_DELIVERY=500, DELIVERY_CHARGE=50;
+let books=[
+{title:"Organon of Medicine - 6th Edition",author:"Dr. Samuel Hahnemann",price:299,old:399,cat:"অর্গানন",stock:10,emoji:"📖"},
+{title:"Boericke's Materia Medica",author:"Dr. William Boericke",price:499,old:650,cat:"মেটেরিয়া মেডিকা",stock:5,emoji:"📕"},
+{title:"Kent's Repertory",author:"Dr. J.T. Kent",price:699,old:899,cat:"রেপার্টরি",stock:3,emoji:"📗"},
+{title:"Keynotes - Allen",author:"Dr. H.C. Allen",price:349,old:450,cat:"মেটেরিয়া মেডিকা",stock:12,emoji:"📘"},
+{title:"Practice of Medicine",author:"Dr. Boericke / Dewey",price:599,old:750,cat:"প্র্যাকটিস",stock:4,emoji:"🩺"},
+{title:"Materia Medica Pura",author:"Dr. Hahnemann",price:799,old:999,cat:"মেটেরিয়া মেডিকা",stock:2,emoji:"📙"},
+{title:"Organon Explained (Bengali)",author:"Bengali Guide",price:199,old:280,cat:"অর্গানন",stock:20,emoji:"📝"},
+{title:"Complete Repertory - Murphy",author:"Dr. Robin Murphy",price:1299,old:1599,cat:"রেপার্টরি",stock:1,emoji:"📚"},
+{title:"BHMS 1st Year Guide Set",author:"A.P. Publication",price:899,old:1200,cat:"BHMS",stock:8,emoji:"🎓"},
+{title:"DHMS Guide - All Years",author:"A.P. Publication",price:749,old:999,cat:"DHMS",stock:0,emoji:"📦"},
+];
+// 500 বই যোগ করার নিয়ম: Google Sheet / books.csv থেকে আসবে। নিচে fetch চেষ্টা করা হচ্ছে।
+let cart={}, currentCat="সব", perPage=20, shown=20, payMethod="";
+async function tryLoadSheet(){
+  try{ const r=await fetch("books.csv"); if(!r.ok) return; const txt=await r.text(); const lines=txt.trim().split("\n").slice(1);
+    if(lines.length>2){ const extra=lines.map(l=>{ const p=l.split(","); return {title:p[0]||"",author:p[1]||"",price:+p[2]||0,old:+p[3]||0,cat:p[4]||"অন্যান্য",stock:+p[5]||0,emoji:p[6]||"📖"} }).filter(b=>b.title); if(extra.length){ books=extra; } }
+  }catch(e){}
+  renderCats(); filterBooks();
+}
+function renderCats(){ const cats=["সব",...new Set(books.map(b=>b.cat))]; document.getElementById("cats").innerHTML=cats.map(c=>`<button class="cat ${c===currentCat?'active':''}" onclick="setCat('${c}',this)">${c}</button>`).join(''); }
+function stockLabel(s){ if(s<=0) return `<div class="stock out">❌ স্টক শেষ</div>`; if(s<=3) return `<div class="stock low">⚠️ স্টকে আছে: মাত্র ${s} পিস</div>`; return `<div class="stock ok">✅ স্টকে আছে: ${s} পিস</div>`; }
+function render(list){ const slice=list.slice(0,shown); document.getElementById("bookGrid").innerHTML=slice.map((b,i)=>{ const idx=books.indexOf(b); return `<div class="card"><div class="cover">${b.emoji}</div><div class="card-body"><h3>${b.title}</h3><div class="author">লেখক: ${b.author}</div>${stockLabel(b.stock)}<div class="price"><b>₹${b.price}</b> ${b.old?`<s>₹${b.old}</s>`:''}</div><div class="qty"><button onclick="changeQty(${idx},-1)">-</button><span id="q${idx}">${cart[idx]||0}</span><button onclick="changeQty(${idx},1)">+</button></div><button class="add" ${b.stock<=0?'disabled':''} onclick="changeQty(${idx},1)">🛒 কার্টে যোগ করুন</button></div></div>` }).join(''); document.getElementById("showing").textContent=`দেখানো হচ্ছে ${slice.length} টি / মোট ${list.length} টি বই`; document.getElementById("totalBooks").textContent=`(${books.length} টি বই এখন সাইটে আছে)`; document.getElementById("loadMoreBtn").style.display=list.length>shown?'inline-block':'none'; }
+function changeQty(idx,d){ const b=books[idx]; let q=cart[idx]||0; q+=d; if(q<0)q=0; if(q>b.stock){ alert("স্টকে মাত্র "+b.stock+" পিস আছে"); q=b.stock; } if(q===0) delete cart[idx]; else cart[idx]=q; updateCartBadge(); filterBooks(); }
+function updateCartBadge(){ const n=Object.values(cart).reduce((a,b)=>a+b,0); document.getElementById("cartCount").textContent=n; document.getElementById("cartCount2").textContent=n; }
+function setCat(c,el){ currentCat=c; shown=perPage; document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active")); el.classList.add("active"); filterBooks(); }
+function filterBooks(){ const q=document.getElementById("search").value.toLowerCase(); const f=books.filter(b=>(currentCat==="সব"||b.cat===currentCat)&&(b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q))); render(f); }
+function loadMore(){ shown+=perPage; filterBooks(); }
+function openCart(){ renderCart(); document.getElementById("cartModal").classList.add("open"); }
+function closeCart(){ document.getElementById("cartModal").classList.remove("open"); }
+function renderCart(){ const items=Object.keys(cart); if(!items.length){ document.getElementById("cartItems").innerHTML="<p>কার্ট খালি। প্রথমে বই যোগ করুন।</p>"; } else { document.getElementById("cartItems").innerHTML=items.map(idx=>{ const b=books[idx], q=cart[idx]; return `<div class="cart-item"><span>${b.title} × ${q}</span><b>₹${b.price*q}</b></div>` }).join(''); } const sub=items.reduce((s,idx)=>s+books[idx].price*cart[idx],0); const del=sub===0?0:(sub>=FREE_DELIVERY?0:DELIVERY_CHARGE); document.getElementById("subtotal").textContent="₹"+sub; document.getElementById("delivery").textContent=sub===0?"₹0":"₹"+del+(del===0?" (ফ্রি)":""); document.getElementById("grand").textContent="₹"+(sub+del); }
+function setPay(m){ payMethod=m; document.getElementById("payCOD").classList.toggle("sel",m==="COD"); document.getElementById("payUPI").classList.toggle("sel",m==="UPI"); document.getElementById("payInfo").innerHTML=m==="COD"?"<b>💵 COD:</b> বই হাতে পেয়ে ডেলিভারি ছেলেকে টাকা দেবেন। কোনো অগ্রিম লাগবে না.":"<b>📱 UPI:</b> এই নম্বরে টাকা পাঠান: <b>"+UPI_ID+"</b><br>টাকা পাঠিয়ে স্ক্রিনশটটা WhatsApp-এ পাঠিয়ে দেবেন।"; }
+function checkout(){ const name=document.getElementById("cName").value.trim(), phone=document.getElementById("cPhone").value.trim(), addr=document.getElementById("cAddr").value.trim(); if(!Object.keys(cart).length) return alert("কার্ট খালি!"); if(!name||!phone||!addr) return alert("নাম, মোবাইল, ঠিকানা — তিনটেই লিখতে হবে"); if(!payMethod) return alert("পেমেন্টের উপায় বাছুন - COD না UPI"); const items=Object.keys(cart).map(idx=>`${books[idx].title} × ${cart[idx]} = ₹${books[idx].price*cart[idx]}`).join("\n"); const sub=Object.keys(cart).reduce((s,idx)=>s+books[idx].price*cart[idx],0); const del=sub>=FREE_DELIVERY?0:DELIVERY_CHARGE; const msg=`🛒 নতুন অর্ডার - A.P. Homoeo Book Mart\n\n${items}\n\nবইয়ের দাম: ₹${sub}\nডেলিভারি: ₹${del}\nমোট: ₹${sub+del}\nপেমেন্ট: ${payMethod}\n\n👤 নাম: ${name}\n📞 মোবাইল: ${phone}\n📍 ঠিকানা: ${addr}`; window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank"); }
+renderCats(); filterBooks(); tryLoadSheet();
+</script></body></html>
